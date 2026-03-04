@@ -489,6 +489,13 @@ nav ul li a:hover {
     font-size: 20px;
     flex-shrink: 0;
 }
+.cal-wrap {
+    margin-top: 40px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
 
 /* ── ABOUT ── */
 .about-grid {
