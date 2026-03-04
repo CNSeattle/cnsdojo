@@ -48,10 +48,10 @@ nav {
 }
 .nav-logo {
     font-family: "Press Start 2P", monospace;
-    font-size: 10px;
+    font-size: 13px;
     color: var(--blue);
     text-decoration: none;
-    line-height: 1.8;
+    line-height: 1;
 }
 .nav-logo .sub {
     display: block;
@@ -70,7 +70,7 @@ nav ul {
 }
 nav ul li a {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 700;
     color: var(--text);
     text-decoration: none;
     padding: 8px 14px;
@@ -240,6 +240,14 @@ nav ul li a:hover {
     color: var(--dark);
     margin-bottom: 8px;
 }
+#programs .sec-head h2,
+#games .sec-head h2,
+#staff .sec-head h2,
+#links .sec-head h2,
+#about .sec-head h2 {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 900;
+}
 .sec-head p {
     font-size: 16px;
     color: var(--muted);
@@ -299,7 +307,7 @@ nav ul li a:hover {
 /* ── STAFF ── */
 .staff-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
 }
 .staff-card {
@@ -317,9 +325,8 @@ nav ul li a:hover {
 }
 .staff-photo {
     width: 100%;
-    height: 220px;
-    object-fit: cover;
-    object-position: top center;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
     display: block;
     background: var(--bg-alt);
 }
@@ -405,7 +412,7 @@ nav ul li a:hover {
     display: block;
 }
 .game-thumb {
-    height: 140px;
+    aspect-ratio: 1 / 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -416,7 +423,7 @@ nav ul li a:hover {
 .game-thumb img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     position: absolute;
     inset: 0;
 }
@@ -484,13 +491,18 @@ nav ul li a:hover {
 }
 
 /* ── ABOUT ── */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+    margin-bottom: 32px;
+}
 .about-inner {
-    max-width: 800px;
-    margin: 0 auto;
     background: var(--bg);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 48px;
+    border-radius: var(--radius);
+    padding: 36px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 .about-inner p {
@@ -498,6 +510,19 @@ nav ul li a:hover {
     color: var(--text);
     line-height: 1.7;
     margin-bottom: 16px;
+}
+.about-cta {
+    text-align: center;
+    background: var(--blue-light);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    margin-top: 24px;
+}
+.about-cta p {
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 20px;
 }
 .stat-row {
     display: grid;
@@ -546,6 +571,11 @@ footer {
     text-transform: uppercase;
     margin-bottom: 24px;
     display: block;
+    text-decoration: none;
+}
+a.foot-sub:hover {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: underline;
 }
 .foot-hours {
     font-size: 15px;
@@ -622,6 +652,9 @@ footer {
     }
     .owner-card .staff-photo {
         height: 240px;
+    }
+    .about-grid {
+        grid-template-columns: 1fr;
     }
     .about-inner {
         padding: 28px 20px;
