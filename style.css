@@ -639,6 +639,7 @@ nav ul li a:hover {
     margin-top: 32px;
     padding-top: 32px;
     border-top: 1px solid var(--border);
+    align-items: end;
 }
 .stat {
     text-align: center;
@@ -649,6 +650,9 @@ nav ul li a:hover {
     font-size: 24px;
     color: var(--blue);
     margin-bottom: 6px;
+}
+.stat .num.num-xl {
+    font-size: 40px;
 }
 .stat .lbl {
     font-size: 12px;

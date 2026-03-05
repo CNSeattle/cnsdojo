@@ -11,6 +11,44 @@
             rel="stylesheet"
         />
         <link rel="stylesheet" href="style.css" />
+
+        <!-- Meta Pixel -->
+        <script>
+            !(function (f, b, e, v, n, t, s) {
+                if (f.fbq) return;
+                n = f.fbq = function () {
+                    n.callMethod
+                        ? n.callMethod.apply(n, arguments)
+                        : n.queue.push(arguments);
+                };
+                if (!f._fbq) f._fbq = n;
+                n.push = n;
+                n.loaded = !0;
+                n.version = "2.0";
+                n.queue = [];
+                t = b.createElement(e);
+                t.async = !0;
+                t.src = v;
+                s = b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t, s);
+            })(
+                window,
+                document,
+                "script",
+                "https://connect.facebook.net/en_US/fbevents.js",
+            );
+            fbq("init", "1052755944754911");
+            fbq("track", "PageView");
+        </script>
+        <noscript>
+            <img
+                height="1"
+                width="1"
+                style="display: none"
+                src="https://www.facebook.com/tr?id=1052755944754911&ev=PageView&noscript=1"
+            />
+        </noscript>
+        <!-- End Meta Pixel -->
     </head>
     <body>
         <!-- NAV -->
@@ -545,31 +583,6 @@
                     <h2>About the Dojo</h2>
                 </div>
                 <div class="about-grid">
-                    <!-- Owners card -->
-                    <div class="staff-card">
-                        <img
-                            class="staff-photo"
-                            src="images/geo.jpg"
-                            alt="Geo and Chelsea — Dojo Owners"
-                        />
-                        <div class="staff-body">
-                            <span class="staff-role">⭐ Dojo Owners</span>
-                            <h3>Geo &amp; Chelsea</h3>
-                            <p>
-                                Code Ninjas Seattle is owned and operated by Geo
-                                and Chelsea, longtime Ballard residents of 15
-                                years. With a 5th grader and a preschooler of
-                                their own, they're passionate about creativity,
-                                education, and building community. When Geo's
-                                creative work paused during the pandemic, the
-                                opportunity to launch Code Ninjas in Seattle
-                                emerged and they jumped in. For the past four
-                                years, they've been dedicated to creating a fun,
-                                welcoming space where kids can discover, build,
-                                and grow.
-                            </p>
-                        </div>
-                    </div>
                     <!-- Dojo info card -->
                     <div class="about-inner">
                         <p>
@@ -604,14 +617,14 @@
                         <div class="stat-row">
                             <div class="stat">
                                 <span class="num">4+</span
-                                ><span class="lbl">Years in Seattle</span>
+                                ><span class="lbl">Years Open</span>
                             </div>
                             <div class="stat">
                                 <span class="num">7–14</span
                                 ><span class="lbl">Ages Served</span>
                             </div>
                             <div class="stat">
-                                <span class="num">∞</span
+                                <span class="num num-xl">∞</span
                                 ><span class="lbl">Games Built</span>
                             </div>
                         </div>
@@ -629,6 +642,31 @@
                                 target="_blank"
                                 >Schedule a Free Session →</a
                             >
+                        </div>
+                    </div>
+                    <!-- Owners card -->
+                    <div class="staff-card">
+                        <img
+                            class="staff-photo"
+                            src="images/geo.jpg"
+                            alt="Geo and Chelsea — Dojo Owners"
+                        />
+                        <div class="staff-body">
+                            <span class="staff-role">⭐ Dojo Owners</span>
+                            <h3>Geo &amp; Chelsea</h3>
+                            <p>
+                                Code Ninjas Seattle is owned and operated by Geo
+                                and Chelsea, longtime Ballard residents of 15
+                                years. With a 5th grader and a preschooler of
+                                their own, they're passionate about creativity,
+                                education, and building community. When Geo's
+                                creative work paused during the pandemic, the
+                                opportunity to launch Code Ninjas in Seattle
+                                emerged and they jumped in. For the past four
+                                years, they've been dedicated to creating a fun,
+                                welcoming space where kids can discover, build,
+                                and grow.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -672,7 +710,7 @@
             </div>
             <p class="foot-copy">
                 © Code Ninjas Seattle · All Rights Reserved<br />
-                Code Ninjas is a franchise of Code Ninjas International
+                Code Ninjas Seattle is a franchise of Code Ninjas
             </p>
         </footer>
 
