@@ -307,8 +307,8 @@ nav ul li a:hover {
 /* ── STAFF ── */
 .staff-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
 }
 .staff-card {
     background: var(--bg);
@@ -326,7 +326,8 @@ nav ul li a:hover {
 .staff-photo {
     width: 100%;
     aspect-ratio: 1 / 1;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: top;
     display: block;
     background: var(--bg-alt);
 }
@@ -752,6 +753,9 @@ a.foot-sub:hover {
 @media (max-width: 840px) {
     nav ul {
         display: none;
+    }
+    .staff-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
     .owner-card {
         grid-column: span 1;
