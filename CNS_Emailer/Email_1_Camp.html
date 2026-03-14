@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⏰ LAST CHANCE: Camp Pass Guarantees Your Spot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+
+        .header {
+            background: #ffffff;
+            padding: 20px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 3px solid #3490bf;
+        }
+
+        .header-logo {
+            height: 60px;
+            width: auto;
+            padding: 8px;
+            background: #f8f8f8;
+            border-radius: 6px;
+            transition: transform 0.2s ease;
+        }
+
+        .header-logo:hover {
+            transform: scale(1.05);
+        }
+
+        #CNLogo {
+            height: 45px;
+            width: auto;
+        }
+
+        #CampLogo {
+            height: 75px;
+            width: auto;
+        }
+
+        #get-camp-pass-btn {
+            background-color: #FFD700;
+            color: #333;
+        }
+
+        #get-camp-pass-btn:hover {
+            background-color: #FFC700;
+        }
+
+        #minecraft-section {
+            background: linear-gradient(135deg, #C8E6C9 0%, #B3E5FC 100%);
+            color: #696969;
+        }
+
+        #minecraft-section h1 {
+            color: #696969;
+        }
+
+        #minecraft-section p {
+            color: #696969;
+            margin: 5px 0 !important;
+        }
+
+        #shop-camps-btn {
+            background-color: #1e9eb8;
+            color: white;
+        }
+
+        #shop-camps-btn:hover {
+            background-color: #1a7a91;
+        }
+
+        .header-left {
+            display: flex;
+            justify-content: center;
+        }
+
+        .header-right {
+            display: flex;
+            justify-content: center;
+        }
+
+        .header-center {
+            flex: 1;
+            text-align: center;
+        }
+
+        .content {
+            padding: 0;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .text-section {
+            padding: 20px 25px;
+            text-align: center;
+        }
+
+        .text-section h1 {
+            font-size: 26px;
+            color: #ff6b6b;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .text-section p {
+            font-size: 15px;
+            color: #333;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            font-size: 16px;
+            font-weight: bold;
+            color: #1e9eb8;
+            margin: 12px 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 14px 45px;
+            background-color: #ff6b6b;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 16px;
+            margin: 18px 0;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: #ff5252;
+        }
+
+        .secondary-cta {
+            display: inline-block;
+            padding: 11px 28px;
+            background-color: #2ecc71;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 13px;
+            margin: 8px 5px;
+            text-align: center;
+        }
+
+        .secondary-cta:hover {
+            background-color: #27ae60;
+        }
+
+        .footer {
+            background-color: #f5f5f5;
+            padding: 15px 20px;
+            font-size: 11px;
+            color: #666;
+            text-align: center;
+            border-top: 1px solid #ddd;
+        }
+
+        .footer-text {
+            margin: 6px 0;
+        }
+
+        .footer a {
+            color: #1e9eb8;
+            text-decoration: none;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: #ddd;
+            margin: 20px 0;
+        }
+
+        @media only screen and (max-width: 480px) {
+            .text-section {
+                padding: 15px 15px;
+            }
+
+            .text-section h1 {
+                font-size: 22px;
+            }
+
+            .text-section p {
+                font-size: 13px;
+            }
+
+            .cta-button {
+                padding: 12px 35px;
+                font-size: 14px;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .header {
+                background: #1a1a1a;
+                border-bottom-color: #5eb3d6;
+            }
+
+            .header-logo {
+                background: #2a2a2a;
+            }
+
+            body {
+                background-color: #1a1a1a;
+                color: #e0e0e0;
+            }
+
+            .container {
+                background-color: #1a1a1a;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+         <!-- HEADER -->
+        <div class="header">
+            <div class="header-left">
+                <img id="CNLogo" src="https://img.mailinblue.com/10792138/images/content_library/original/69b342797d2008e816925777.png" alt="Summer Camps 2026" class="header-logo">
+            </div>
+            <div class="header-right">
+                <img id="CampLogo" src="https://img.mailinblue.com/10792138/images/content_library/original/69b1ffa347869257b07cffef.png" alt="Code Ninjas Seattle" class="header-logo">
+            </div>
+        </div>
+
+        <!-- HERO IMAGE - CAMP PASS GRAPHIC -->
+        <img src="https://img.mailinblue.com/10792138/images/content_library/original/69b1ffa747869257b07cfff1.jpg" alt="Camp Pass - Lock in Summer Fun" class="hero-image">
+
+        <!-- TEXT SECTION 1 -->
+        <div class="text-section" style="padding: 12px 25px;">
+            <h1>⏰ Last Chance!</h1>
+            <p>Last chance! Camp Pass savings end soon. Buy 3+ camps, save, and still choose the camps you want—even the sold‑out ones.</p>
+            <p style="font-weight: bold; font-size: 18px; margin: 8px 0;">Save $225-$750</p>
+        </div>
+
+        <!-- CTA 1 -->
+        <div style="text-align: center; padding: 0 25px;">
+            <a id="get-camp-pass-btn" href="https://cn.mystudio.io/e/?=CNS667/209/267784//1773363350&utm_source=brevo&utm_campaign=Camp26-March-Email&utm_medium=email" class="cta-button">GET CAMP PASS</a>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- MINECRAFT SPOTLIGHT -->
+        <div id="minecraft-section" class="text-section">
+            <h1 style="font-size: 22px;">🔥 MINECRAFT CAMPS</h1>
+            <p style="font-size: 14px;"><strong>Filling Up FAST</strong></p>
+            <p style="font-size: 13px;">Week 1 (July 6-10): Only a few spots left</p>
+            <p style="font-size: 13px;">Week 3 (July 20-24): Filling fast</p>
+            <p style="font-size: 13px;">Week 5 (Aug 3-7): Nearly full</p>
+        </div>
+
+        <!-- HERO IMAGE - SCHEDULE GRAPHIC -->
+        <img src="https://img.mailinblue.com/10792138/images/content_library/original/69b1ffaca30fbbedf8de1a66.jpg" alt="2026 Summer Camps Schedule" class="hero-image">
+
+        <!-- TEXT SECTION 2 -->
+        <div class="text-section">
+            <p>Click the "Shop Camps" button below to explore camp descriptions and secure your camper's spot.</p>
+
+            <h2 style="font-size: 18px; color: #333; margin: 16px 0 8px 0;">Make It a Full Day</h2>
+            <p>Sign up for both AM and PM camps to create a full-day experience. Just pack a lunch, your ninja will spend the day creating, learning, and having fun.</p>
+
+            <h2 style="font-size: 18px; color: #333; margin: 16px 0 8px 0;">Location</h2>
+            <p>All camps take place at our Code Ninjas Seattle dojo in Carkeek Plaza.</p>
+
+            <p>After registering, you'll receive a confirmation email. As summer gets closer, we'll send detailed info about drop-off, pick-up, and what to bring.</p>
+
+            <p>Questions? Reach out anytime at <a href="mailto:seattlewa@codeninjas.com" style="color: #1e9eb8; text-decoration: none;">seattlewa@codeninjas.com</a>.</p>
+
+            <div style="text-align: center; margin-top: 18px;">
+                <a id="shop-camps-btn" href="https://cn.mystudio.io/e/?=CNS667/209/267784//1773363350&utm_source=brevo&utm_campaign=Camp26-March-Email&utm_medium=email" class="cta-button">SHOP CAMPS</a>
+            </div>
+        </div>
+
+        <!-- SECONDARY CTAs -->
+        <div style="text-align: center; padding: 15px 25px; background-color: #f9f9f9;">
+            <a href="https://cnsdojo.com/?utm_source=brevo&utm_campaign=Camp26-March-Email&utm_medium=email" class="secondary-cta">Learn More</a>
+            <a href="https://www.codeninjas.com/wa-seattle/schedule-tour?utm_source=brevo&utm_campaign=Camp26-March-Email&utm_medium=email" class="secondary-cta">Free Session</a>
+        </div>
+
+           <!-- FOOTER -->
+        <div class="footer">
+            <div class="footer-text"><strong>Code Ninjas Seattle</strong></div>
+            <div class="footer-text"><a href="https://maps.app.goo.gl/tUfHvybmNA8ikpmB8?utm_source=brevo&utm_campaign=Camp26-March-Email&utm_medium=email" style="color: #666; text-decoration: none;">Carkeek Plaza, Seattle WA</a> | 206-201-1140</div>
+            <div class="footer-text" style="margin-top: 12px; letter-spacing: 8px;">
+                <a href="https://cnsdojo.com/?utm_source=brevo&utm_campaign=Camp26-March-Email&utm_medium=email" style="color: #1e9eb8; text-decoration: none; margin: 0 4px;">🌐</a>
+                <a href="mailto:seattlewa@codeninjas.com" style="color: #1e9eb8; text-decoration: none; margin: 0 4px;">✉️</a>
+                <a href="https://instagram.com/codeninjasseattle?utm_source=brevo&utm_campaign=Camp26-March-Email&utm_medium=email" style="color: #1e9eb8; text-decoration: none; margin: 0 4px;">📷</a>
+            </div>
+            <div class="footer-text" style="margin-top: 10px; border-top: 1px solid #ddd; padding-top: 8px;">
+   </body></html>
