@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Ninjas Email Campaign Generator</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: #f5f5f5;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 2rem;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 1.5rem;
+      color: #222;
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #333;
+    }
+    select, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+    }
+    select:focus, textarea:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+    }
+    textarea {
+      min-height: 200px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      resize: vertical;
+    }
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: #222;
+    }
+    .info-box {
+      background: #f9f9f9;
+      padding: 1rem;
+      border-radius: 6px;
+      border-left: 3px solid #007bff;
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+    .email-list {
+      background: #f9f9f9;
+      padding: 1rem;
+      border-radius: 6px;
+      font-size: 13px;
+      max-height: 400px;
+      overflow-y: auto;
+      margin-bottom: 1rem;
+      border: 1px solid #eee;
+    }
+    .email-item {
+      padding: 12px;
+      margin-bottom: 12px;
+      border-left: 3px solid #28a745;
+      padding-left: 12px;
+      background: white;
+      border-radius: 4px;
+    }
+    .email-item strong {
+      color: #222;
+    }
+    .email-item small {
+      color: #999;
+      display: block;
+      margin-top: 4px;
+    }
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 1.5rem;
+    }
+    button {
+      padding: 10px 20px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      background: white;
+      color: #222;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    button:hover {
+      background: #f0f0f0;
+      border-color: #999;
+    }
+    button:active {
+      transform: scale(0.98);
+    }
+    button.primary {
+      background: #007bff;
+      color: white;
+      border-color: #007bff;
+    }
+    button.primary:hover {
+      background: #0056b3;
+      border-color: #0056b3;
+    }
+    #message {
+      margin-top: 1rem;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      display: none;
+    }
+    #message.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      display: block;
+    }
+    #message.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+      display: block;
+    }
+    #preview {
+      display: none;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Code Ninjas Email Campaign Generator</h1>
+  
+  <div class="form-group">
+    <label for="segment">Select Segment</label>
+    <select id="segment">
+      <option value="">-- Choose --</option>
+      <option value="enrolled">Enrolled Students</option>
+      <option value="leads">Leads / Interested Parents</option>
+      <option value="ptas">PTAs / PTOs</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="template">Select Template</label>
+    <select id="template">
+      <option value="">-- Choose --</option>
+      <option value="E1">E1: Program Update</option>
+      <option value="L1">L1: Free Game Building Session</option>
+      <option value="P1">P1: School Partnership Intro</option>
+    </select>
+  </div>
+
+  <div class="section-title">Paste Contact Data</div>
+  <div class="info-box">
+    Copy the entire tab from your Google Sheet (including headers) and paste here. Headers must match field names (e.g., Email, ChildFirstName, etc.)
+  </div>
+  
+  <div class="form-group">
+    <textarea id="contacts" placeholder="Paste CSV data here..." spellcheck="false"></textarea>
+  </div>
+
+  <div class="button-group">
+    <button class="primary" onclick="previewEmails()">Preview Emails</button>
+    <button class="primary" onclick="downloadCSV()">Download CSV</button>
+  </div>
+
+  <div id="message"></div>
+
+  <div id="preview">
+    <div class="section-title">Email Preview</div>
+    <div class="info-box" id="preview-info"></div>
+    <div class="email-list" id="email-list"></div>
+  </div>
+</div>
+
+<script>
+const TEMPLATES = {
+  E1: {
+    name: "E1: Program Update",
+    subject: "{{ParentFirstName}}'s Progress in {{ProgramsEnrolled}}",
+    body: `Hi {{ParentFirstName}},
+
+Great to see {{ChildFirstName}} progressing in {{ProgramsEnrolled}}! Keep an eye out for updates on upcoming sessions and milestones.
+
+Looking forward to seeing {{ChildFirstName}} continue learning!
+
+Best,
+Geo
+Code Ninjas Seattle`
+  },
+  L1: {
+    name: "L1: Free Game Building Session Invitation",
+    subject: "Free Game Building Session for {{ChildFirstName}} at Code Ninjas",
+    body: `Hi {{ParentFirstName}}! 👋
+
+We'd love to invite {{ChildFirstName}} to try Code Ninjas Seattle with a free Game Building Session! During this hands-on visit, {{ChildFirstName}} will jump right in and create their own video game while getting a feel for how our dojo works.
+
+It's fun, beginner-friendly, and a great way to see if {{ProgramInterested}} is the right fit — no experience needed.
+
+Want me to send you available times to come in?
+
+Best,
+Geo
+Code Ninjas Seattle`
+  },
+  P1: {
+    name: "P1: School Partnership Intro",
+    subject: "Bring Code Ninjas to {{SchoolName}}",
+    body: `Hi {{ContactFirstName}},
+
+I'm Geo and I'm a local parent and the owner of Code Ninjas Seattle. I'm reaching out because we love partnering with PTAs to support both student learning and school fundraising.
+
+We work with schools in a few different ways depending on what your community needs:
+• Fundraising partnerships where a portion of new student enrollments is donated back to your PTA
+• STEM & coding enrichment programs brought directly into your school
+• Spirit nights, grade events, and buy-in parties hosted at our center
+
+As PTA members and parents ourselves, we understand how Seattle Public Schools partnerships work and aim to make collaboration easy and low-lift for volunteers.
+
+If this sounds interesting, I'd love to schedule a quick 10–15 minute intro call to learn about your goals and see if there's a good fit.
+
+Thanks for everything you do for your school community!
+
+Best,
+Geo Rittenmyer
+Code Ninjas Seattle`
+  }
+};
+
+let generatedEmails = [];
+let contactsData = [];
+
+function parseCSV(csvText) {
+  const lines = csvText.trim().split('\n');
+  if (lines.length < 2) return [];
+  
+  const headers = lines[0].split(',').map(h => h.trim());
+  const contacts = [];
+  
+  for (let i = 1; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (!line) continue;
+    
+    const values = line.split(',').map(v => v.trim());
+    const contact = {};
+    headers.forEach((header, idx) => {
+      contact[header] = values[idx] || '';
+    });
+    
+    if (Object.values(contact).some(v => v)) {
+      contacts.push(contact);
+    }
+  }
+  
+  return contacts;
+}
+
+function personalize(template, contact) {
+  let subject = template.subject;
+  let body = template.body;
+  
+  Object.keys(contact).forEach(key => {
+    const regex = new RegExp(`{{${key}}}`, 'g');
+    subject = subject.replace(regex, contact[key]);
+    body = body.replace(regex, contact[key]);
+  });
+  
+  return { subject, body };
+}
+
+function previewEmails() {
+  const segment = document.getElementById('segment').value;
+  const templateId = document.getElementById('template').value;
+  const contactsText = document.getElementById('contacts').value;
+  
+  if (!segment || !templateId || !contactsText) {
+    showMessage('Please select segment, template, and paste contacts', 'error');
+    return;
+  }
+  
+  const template = TEMPLATES[templateId];
+  contactsData = parseCSV(contactsText);
+  
+  if (contactsData.length === 0) {
+    showMessage('No contacts found. Check your CSV format.', 'error');
+    return;
+  }
+  
+  generatedEmails = contactsData.map(c => personalize(template, c));
+  
+  const previewDiv = document.getElementById('preview');
+  document.getElementById('preview-info').textContent = 
+    `${generatedEmails.length} emails ready using ${template.name}`;
+  
+  const emailList = document.getElementById('email-list');
+  emailList.innerHTML = generatedEmails.map((email, idx) => {
+    const contact = contactsData[idx];
+    const emailAddr = contact.Email || contact.email || '(no email)';
+    return `
+      <div class="email-item">
+        <strong>Email ${idx + 1}</strong>
+        <small><strong>To:</strong> ${emailAddr}</small>
+        <small><strong>Subject:</strong> ${email.subject}</small>
+        <small><strong>Body preview:</strong> ${email.body.substring(0, 80)}...</small>
+      </div>
+    `;
+  }).join('');
+  
+  previewDiv.style.display = 'block';
+  showMessage(`✓ Preview ready! ${generatedEmails.length} emails generated.`, 'success');
+}
+
+function downloadCSV() {
+  if (generatedEmails.length === 0) {
+    showMessage('Generate preview first', 'error');
+    return;
+  }
+  
+  let csv = 'To,Subject,Body\n';
+  generatedEmails.forEach((email, idx) => {
+    const to = contactsData[idx].Email || contactsData[idx].email || '';
+    const subject = `"${email.subject.replace(/"/g, '""')}"`;
+    const body = `"${email.body.replace(/"/g, '""')}"`;
+    csv += `${to},${subject},${body}\n`;
+  });
+  
+  const blob = new Blob([csv], { type: 'text/csv; charset=utf-8;' });
+  const link = document.createElement('a');
+  const url = URL.createObjectURL(blob);
+  link.setAttribute('href', url);
+  link.setAttribute('download', `code-ninjas-emails-${new Date().toISOString().split('T')[0]}.csv`);
+  link.style.visibility = 'hidden';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  
+  showMessage('✓ CSV downloaded! Next: Import to Outlook mail merge.', 'success');
+}
+
+function showMessage(text, type) {
+  const msg = document.getElementById('message');
+  msg.textContent = text;
+  msg.className = type;
+}
+
+// Clear message after 5 seconds
+setTimeout(() => {
+  document.getElementById('message').className = '';
+  document.getElementById('message').textContent = '';
+}, 5000);
+</script>
+</body>
+</html>
