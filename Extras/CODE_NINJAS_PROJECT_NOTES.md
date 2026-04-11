@@ -209,6 +209,102 @@ Contains full template text with merge fields. Can be edited and referenced by t
 
 ---
 
+---
+
+## System 2: Brevo Mass Email Campaigns
+
+**Status:** In development (April 2026)  
+**Purpose:** Send mass email campaigns & updates to all subscribers (newsletters, event announcements, program updates)
+
+### Workflow
+
+```
+Design HTML (Zed + Claude)
+    ↓
+Upload images to Brevo content library → Get URLs
+    ↓
+Embed Brevo URLs in HTML
+    ↓
+Push HTML campaign to Brevo API
+    ↓
+Send to mailing list
+```
+
+### Setup Requirements
+
+- **Brevo Account:** Active account with API key
+- **API Key:** Stored securely (not in git)
+- **Mailing Lists:** Created in Brevo (e.g., "All Subscribers", "Parents", "Newsletter")
+- **Images:** Stored in Brevo's content library (no local file storage needed)
+
+### Script: `brevo-push.js` (To be built)
+
+**Purpose:** Automate image upload + campaign creation
+
+**Usage:**
+```bash
+node brevo-push.js <html-file> <mailing-list-id> <campaign-name>
+```
+
+**What it does:**
+1. Reads HTML file
+2. Extracts image references (local paths)
+3. Uploads images to Brevo content library → returns URLs
+4. Replaces image paths in HTML with Brevo URLs
+5. Creates Brevo email campaign with updated HTML
+6. Outputs campaign ID for sending
+
+**Inputs:**
+- `html-file` — path to email HTML design
+- `mailing-list-id` — Brevo list ID (e.g., "enrolled-students")
+- `campaign-name` — campaign name (e.g., "May Newsletter")
+
+**Outputs:**
+- Campaign created in Brevo (ready to schedule/send)
+- Campaign ID logged to console
+
+### Image Management
+
+**Upload to Brevo Content Library:**
+- Max size: 2MB per image
+- Formats: JPEG, JPG, PNG, BMP, GIF
+- Brevo returns permanent URL for embedding
+
+**HTML Embedding:**
+```html
+<img src="https://brevo-bucket-url.com/image-uuid" alt="Description">
+```
+
+### Campaign Types (To Define)
+
+- **Newsletter** — Monthly/weekly updates, community highlights
+- **Event Announcement** — New programs, workshops, summer camps
+- **Program Update** — Session reminders, progress announcements
+- **Urgent Notice** — Schedule changes, emergency info
+
+### Mailing Lists (To Create)
+
+- All Subscribers
+- Enrolled Students (parents)
+- Leads (prospective families)
+- Staff/Admins
+- PTAs/Schools
+
+---
+
+## System Comparison
+
+| Feature | Outlook Mail Merge | Brevo Mass Campaigns |
+|---------|-------------------|----------------------|
+| **Use Case** | Individual follow-ups, targeted outreach | Newsletters, announcements, bulk updates |
+| **Personalization** | High (merge fields) | Basic (first name insertion) |
+| **Scale** | 50-100 per hour | Unlimited (rate-limited by Brevo) |
+| **Sent Via** | Outlook (user account) | Brevo (official sender) |
+| **Setup** | CSV + Outlook | Brevo account + API |
+| **Cost** | Free (if M365 subscriber) | Paid (Brevo pricing) |
+
+---
+
 ## Contact
 
 Built for: **Geo Rittenmyer**, Code Ninjas Seattle  

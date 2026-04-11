@@ -8,3 +8,7 @@ Thumbs.db
 
 # Backup files
 *.bak
+
+# Environment variables
+.env
+.env.local
