@@ -64,8 +64,15 @@ const req = https.request(options, (res) => {
     if (res.statusCode === 200 || res.statusCode === 201) {
       try {
         const response = JSON.parse(data);
+        const brevoUrl = response.url;
+
+        if (!brevoUrl) {
+          console.error('❌ No URL in response');
+          process.exit(1);
+        }
+
         console.log('✅ Image added to Brevo gallery!');
-        console.log(`📍 Brevo URL: ${response.imageUrl}`);
+        console.log(`\n📍 Brevo URL:\n${brevoUrl}\n`);
       } catch (e) {
         console.error('❌ Error parsing response:', e.message);
         process.exit(1);

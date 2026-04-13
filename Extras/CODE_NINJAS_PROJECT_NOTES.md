@@ -237,31 +237,67 @@ Send to mailing list
 - **Mailing Lists:** Created in Brevo (e.g., "All Subscribers", "Parents", "Newsletter")
 - **Images:** Stored in Brevo's content library (no local file storage needed)
 
-### Script: `brevo-push.js` (To be built)
+### Script 1: `brevo-upload-image.js` ✅
 
-**Purpose:** Automate image upload + campaign creation
+**Purpose:** Upload image from GitHub to Brevo content library, get Brevo URL
+
+**Setup (one-time):**
+```bash
+npm install dotenv
+```
 
 **Usage:**
 ```bash
-node brevo-push.js <html-file> <mailing-list-id> <campaign-name>
+node brevo-upload-image.js "https://raw.githubusercontent.com/CNSeattle/cnsdojo/main/path/to/image.png"
 ```
 
 **What it does:**
-1. Reads HTML file
-2. Extracts image references (local paths)
-3. Uploads images to Brevo content library → returns URLs
-4. Replaces image paths in HTML with Brevo URLs
-5. Creates Brevo email campaign with updated HTML
-6. Outputs campaign ID for sending
+1. Takes a public image URL (GitHub raw, etc.)
+2. Sends to Brevo API
+3. Returns Brevo gallery URL for embedding in HTML
 
-**Inputs:**
-- `html-file` — path to email HTML design
-- `mailing-list-id` — Brevo list ID (e.g., "enrolled-students")
-- `campaign-name` — campaign name (e.g., "May Newsletter")
+**Output:**
+```
+📍 Brevo URL: https://img.mailinblue.com/...
+```
 
-**Outputs:**
-- Campaign created in Brevo (ready to schedule/send)
-- Campaign ID logged to console
+**Note:** Image must be hosted publicly (GitHub, cloud storage, etc.) — not local files
+
+---
+
+### Script 2: `brevo-push-campaign.js` ✅
+
+**Purpose:** Create draft email campaign in Brevo from HTML file
+
+**Usage:**
+```bash
+node brevo-push-campaign.js <html-file> <sender-email> <sender-name>
+```
+
+**Example:**
+```bash
+node brevo-push-campaign.js ./CNS_Emailer/Email_1_Crunchlabs.html seattlewa@codeninjas.com "Code Ninjas Seattle"
+```
+
+**What it does:**
+1. Reads HTML file (with Brevo image URLs already embedded)
+2. Creates draft campaign in Brevo
+3. Sets sender name & email
+4. Outputs Campaign ID
+
+**Output:**
+```
+✅ Campaign created!
+🆔 Campaign ID: 9
+
+📋 Next steps:
+1. Go to Brevo → Campaigns → Emails
+2. Find draft campaign
+3. Edit: Add subject line, mailing list
+4. Send!
+```
+
+**Note:** Subject and mailing list are set in Brevo UI after creation
 
 ### Image Management
 

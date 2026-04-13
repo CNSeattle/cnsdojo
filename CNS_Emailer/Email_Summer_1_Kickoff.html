@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Ninjas Summer Camps 2026 - Registration Open!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+        .header {
+            background: linear-gradient(135deg, #3490bf 0%, #0e1a20 100%);
+            color: #adef32;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 24px;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        .header p {
+            font-family: 'VT323', monospace;
+            font-size: 14px;
+            color: #ffffff;
+        }
+        .content {
+            padding: 30px 20px;
+        }
+        .greeting {
+            font-size: 16px;
+            color: #0e1a20;
+            margin-bottom: 20px;
+        }
+        .greeting strong {
+            color: #3490bf;
+        }
+        .intro-text {
+            background-color: #f0f8ff;
+            border-left: 4px solid #adef32;
+            padding: 15px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: #333;
+            border-radius: 4px;
+        }
+        .camps-section {
+            margin-bottom: 30px;
+        }
+        .camp-card {
+            background: linear-gradient(135deg, #f9f9f9 0%, #f0f8ff 100%);
+            border: 2px solid #3490bf;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        .camp-card:hover {
+            border-color: #adef32;
+            box-shadow: 0 4px 12px rgba(52, 144, 191, 0.2);
+        }
+        .camp-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 14px;
+            color: #0e1a20;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .camp-week {
+            font-family: 'VT323', monospace;
+            font-size: 11px;
+            background-color: #adef32;
+            color: #0e1a20;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .camp-description {
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        .enrollment-bar {
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            height: 20px;
+            margin-bottom: 8px;
+            overflow: hidden;
+        }
+        .enrollment-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3490bf, #adef32);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: white;
+            font-weight: bold;
+        }
+        .enrollment-text {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .enrollment-highlight {
+            color: #3490bf;
+            font-weight: bold;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #3490bf 0%, #2a6ba5 100%);
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            text-align: center;
+            width: 100%;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            background: linear-gradient(135deg, #adef32 0%, #8bc700 100%);
+            color: #0e1a20;
+        }
+        .all-camps-section {
+            background-color: #0e1a20;
+            color: #adef32;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        .all-camps-section h2 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+        .all-camps-section p {
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+        .all-camps-button {
+            background-color: #adef32;
+            color: #0e1a20;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-block;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+        .all-camps-button:hover {
+            background-color: #ffffff;
+        }
+        .footer {
+            background-color: #0e1a20;
+            color: #adef32;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            border-top: 3px solid #3490bf;
+        }
+        .footer-heading {
+            font-family: 'VT323', monospace;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+        .footer-content {
+            font-size: 11px;
+            line-height: 1.8;
+            color: #ffffff;
+        }
+        .footer a {
+            color: #adef32;
+            text-decoration: none;
+        }
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 18px;
+            }
+            .camp-title {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .camp-week {
+                margin-top: 8px;
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>⚡ SUMMER CAMPS 2026 ⚡</h1>
+            <p>Registration is NOW OPEN!</p>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="content">
+            <!-- GREETING -->
+            <div class="greeting">
+                Hey Ninja Families! 🏃‍♂️
+            </div>
+
+            <!-- INTRO -->
+            <div class="intro-text">
+                <strong>Summer is calling!</strong> Registration is OPEN for our 2026 Summer Camps. 12 amazing weeks of coding, creating, and adventure starting <strong>July 6th</strong>. Choose your adventure and secure your spot today!
+            </div>
+
+            <!-- FEATURED CAMPS -->
+            <div class="camps-section">
+                <!-- CAMP 1: ROBLOX -->
+                <div class="camp-card">
+                    <div class="camp-title">
+                        <span>🏗️ Roblox: 3D World Builders</span>
+                        <span class="camp-week">WEEK 2</span>
+                    </div>
+                    <div class="camp-description">
+                        Design and construct immersive 3D worlds using the Roblox platform. From planning environments to building interactive realms, campers will bring their ideas to life and share creations with a global community.
+                    </div>
+                    <div class="enrollment-bar">
+                        <div class="enrollment-fill" style="width: 20%;">
+                            2/10
+                        </div>
+                    </div>
+                    <div class="enrollment-text">
+                        <span class="enrollment-highlight">Only 2 Enrolled</span> | 8 Spots Available
+                    </div>
+                    <button class="cta-button">Sign Up Now</button>
+                </div>
+
+                <!-- CAMP 2: YOUTUBE -->
+                <div class="camp-card">
+                    <div class="camp-title">
+                        <span>🎥 YouTube Content Studio</span>
+                        <span class="camp-week">WEEK 2</span>
+                    </div>
+                    <div class="camp-description">
+                        Build and customize your own YouTube channel while mastering video recording and editing. Design eye-catching thumbnails and channel art, analyze successful creators, and learn the essentials of copyrights and fair use.
+                    </div>
+                    <div class="enrollment-bar">
+                        <div class="enrollment-fill" style="width: 10%;">
+                            1/10
+                        </div>
+                    </div>
+                    <div class="enrollment-text">
+                        <span class="enrollment-highlight">Only 1 Enrolled!</span> | 9 Spots Available
+                    </div>
+                    <button class="cta-button">Sign Up Now</button>
+                </div>
+
+                <!-- CAMP 3: 3D MODELING ADVANCED -->
+                <div class="camp-card">
+                    <div class="camp-title">
+                        <span>🎨 3D Modeling: Creators Advanced</span>
+                        <span class="camp-week">WEEK 6</span>
+                    </div>
+                    <div class="camp-description">
+                        Unlock the world of 3D design using Tinkercad and Blender. Craft custom jewelry, trophies, sprawling castles, and monsters. Blend technical modeling skills with artistic flair and build a digital portfolio for your 3D Dojo.
+                    </div>
+                    <div class="enrollment-bar">
+                        <div class="enrollment-fill" style="width: 0%;">
+                        </div>
+                    </div>
+                    <div class="enrollment-text">
+                        <span class="enrollment-highlight">Be First to Register!</span> | 10 Spots Available
+                    </div>
+                    <button class="cta-button">Sign Up Now</button>
+                </div>
+            </div>
+
+            <!-- ALL CAMPS CTA -->
+            <div class="all-camps-section">
+                <h2>SEE ALL 12 CAMPS</h2>
+                <p>Minecraft, Scratch, Digital Art, Retro Arcade, and more!</p>
+                <a href="https://members.codeninjas.com/" class="all-camps-button">View Full Schedule</a>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="footer-heading">CODE NINJAS SEATTLE (BALLARD)</div>
+            <div class="footer-content">
+                📍 10009 Holman Rd NW, Seattle, WA 98177<br>
+                📧 <a href="mailto:seattlewa@codeninjas.com">seattlewa@codeninjas.com</a><br>
+                ☎️ (206) 555-0123<br>
+                <br>
+                ⏰ Hours: Tues–Fri 3–7 PM | Sat 9:30 AM–3 PM<br>
+                <br>
+                <a href="https://members.codeninjas.com/">codeninjas.com/seattle</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

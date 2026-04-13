@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Ninjas Schooled Casting</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            padding: 40px 20px;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            margin-bottom: 40px;
+        }
+
+        .casting-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .casting-button {
+            display: block;
+            padding: 18px 40px;
+            background-color: #ff6b6b;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 18px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .casting-button:hover {
+            background-color: #ff5252;
+            transform: scale(1.05);
+        }
+
+        .casting-button.saturday {
+            background-color: #4ecdc4;
+        }
+
+        .casting-button.saturday:hover {
+            background-color: #45b7ad;
+        }
+
+        @media only screen and (max-width: 480px) {
+            .casting-button {
+                padding: 14px 30px;
+                font-size: 16px;
+            }
+
+            .logo {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://img.mailinblue.com/10792138/images/rnb/original/69d9dc558443a7a31835a173.png" alt="Code Ninjas Casting Call" class="logo">
+
+        <div class="casting-links">
+            <a href="https://cn.mystudio.io/e/?=CNS667/209/332420//1776055425" target="_blank" class="casting-button friday">Friday Casting - April 24th 5-6pm</a>
+            <a href="https://cn.mystudio.io/e/?=CNS667/209/332420//1776055425" target="_blank" class="casting-button saturday">Saturday Casting - April 25th 12:30pm-2:00pm</a>
+        </div>
+    </div>
+</body>
+</html>
