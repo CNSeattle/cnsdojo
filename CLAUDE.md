@@ -10,7 +10,7 @@ Static HTML website for Code Ninjas Seattle (Ballard Dojo). No build tools, fram
 
 ## Design System
 Retro pixel/8-bit aesthetic using:
-- Fonts: `Press Start 2P` (headings/labels), `VT323` (body)
+- Fonts: `Press Start 2P` (headings/labels), `VT323` (body). Emailers use `'Trebuchet MS', Verdana, Arial` since custom fonts don't load in email clients.
 - Colors defined as CSS variables in `:root` — always use these, never hardcode hex values
 - Key colors: `--blue` (#3490bf), `--green-bright` (#adef32), `--dark` (#0e1a20)
 
