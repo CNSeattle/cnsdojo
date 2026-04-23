@@ -24,3 +24,16 @@ package-lock.json
 PRIMARY_Contacts.csv
 assets/brevo-urls.json
 assets/compressed/brevo-urls.json
+
+# Build & deployment
+*.pdf
+*.csv
+CNS_Emailer/
+Extras/
+add-pdf-link.js
+brevo-*.js
+_scripts/
+wrangler.jsonc
+.wranglerignore
+.wrangler/
+dist/
