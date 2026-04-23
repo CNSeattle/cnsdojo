@@ -21,16 +21,13 @@ node_modules/
 package-lock.json
 package.json
 
-# Utility scripts & data (not for deployment)
-_scripts/
+# Local CRM & utility scripts (keep locally, don't deploy)
+_local/
+
+# Utility directories
 CNS_Emailer/
 Extras/
-add-pdf-link.js
-brevo-*.js
-PRIMARY_Contacts.csv
-SCHOOLED_Sign-Up_Flyer.pdf
-assets/brevo-urls.json
-assets/compressed/brevo-urls.json
+assets/
 
 # Build & Cloudflare
 .wrangler/
