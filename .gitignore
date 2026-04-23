@@ -29,7 +29,8 @@ CNS_Emailer/
 Extras/
 assets/
 
-# Build & Cloudflare
+# Build & deployment (Cloudflare Workers - not needed for Pages)
 .wrangler/
 .wranglerignore
+wrangler.jsonc
 dist/
