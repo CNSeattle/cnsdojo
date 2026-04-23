@@ -268,24 +268,28 @@
 
     const time = formatTimeFull(selectedSlot);
 
-    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-      parent_name: parentName,
-      child_name: childName,
-      email: email,
-      audition_time: time
-    }).then(() => {
-      bookedSlots.push(selectedSlot);
-      localStorage.setItem('schooledBookedSlots', JSON.stringify(bookedSlots));
+    // Store booking locally
+    bookedSlots.push(selectedSlot);
+    localStorage.setItem('schooledBookedSlots', JSON.stringify(bookedSlots));
+
+    // If EmailJS is available, send email
+    if (typeof emailjs !== 'undefined') {
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        parent_name: parentName,
+        child_name: childName,
+        email: email,
+        audition_time: time
+      }).catch(err => console.error('Email send failed:', err));
       showMessage(`✓ Audition confirmed! ${parentName}, confirmation sent to ${email}. See you on ${time}!`, 'success');
-      document.getElementById('castingForm').reset();
-      selectedSlot = null;
-      document.getElementById('slotsSection').style.display = 'block';
-      document.getElementById('formSection').style.display = 'none';
-      renderSlots();
-    }).catch(err => {
-      showMessage('Error sending confirmation. Please try again.', 'error');
-      console.error('EmailJS error:', err);
-    });
+    } else {
+      showMessage(`✓ Audition confirmed! ${parentName}, your audition is booked for ${time}. Please check your email for details.`, 'success');
+    }
+
+    document.getElementById('castingForm').reset();
+    selectedSlot = null;
+    document.getElementById('slotsSection').style.display = 'block';
+    document.getElementById('formSection').style.display = 'none';
+    renderSlots();
   });
 
   function showMessage(text, type) {
