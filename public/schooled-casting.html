@@ -141,7 +141,16 @@
   const EMAILJS_SERVICE_ID = 'service_xwwm8io';
   const EMAILJS_TEMPLATE_ID = 'template_y1ciilr';
 
-  emailjs.init(EMAILJS_PUBLIC_KEY);
+  try {
+    if (typeof emailjs !== 'undefined') {
+      emailjs.init(EMAILJS_PUBLIC_KEY);
+      console.log('EmailJS initialized');
+    } else {
+      console.warn('EmailJS library not loaded');
+    }
+  } catch (e) {
+    console.error('EmailJS init error:', e);
+  }
 
   function generateFridaySlots() {
     const slots = [];
@@ -202,7 +211,18 @@
   let selectedSlot = null;
 
   function renderSlots() {
+    console.log('renderSlots called');
     const fridayContainer = document.getElementById('fridaySlots');
+    const saturdayContainer = document.getElementById('saturdaySlots');
+    console.log('Friday container:', fridayContainer);
+    console.log('Saturday container:', saturdayContainer);
+    console.log('Friday slots:', fridaySlots);
+
+    if (!fridayContainer || !saturdayContainer) {
+      console.error('Slot containers not found!');
+      return;
+    }
+
     fridayContainer.innerHTML = '';
     fridaySlots.forEach(slot => {
       const btn = document.createElement('button');
