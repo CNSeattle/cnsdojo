@@ -1,15 +1,7 @@
 {
   "name": "cnsdojo",
-  "type": "javascript",
   "compatibility_date": "2026-04-23",
-  "observability": {
-    "enabled": true
-  },
-  "build": {
-    "command": "echo 'Static site deployment'",
-    "watch_paths": []
-  },
-  "site": {
-    "bucket": "./public"
+  "assets": {
+    "directory": "./public"
   }
 }
