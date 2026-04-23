@@ -320,6 +320,7 @@
 
             <div class="form-section" id="formSection">
                 <div class="form-inner">
+                    <button class="back-link" id="backBtn">← Back to time slots</button>
                     <div class="selected-slot">
                         Your audition:
                         <strong id="selectedSlotDisplay"></strong>
@@ -522,6 +523,15 @@
                 document.getElementById("message").innerHTML = "";
             }
 
+            document.getElementById("backBtn").addEventListener("click", (e) => {
+                e.preventDefault();
+                selectedSlot = null;
+                document.getElementById("castingForm").reset();
+                document.getElementById("slotsSection").style.display = "block";
+                document.getElementById("formSection").style.display = "none";
+                loadBookedSlots();
+            });
+
             document
                 .getElementById("castingForm")
                 .addEventListener("submit", (e) => {
@@ -574,8 +584,8 @@
                                 document.getElementById(
                                     "formSection",
                                 ).style.display = "none";
-                                // Reload booked slots from sheet
-                                setTimeout(loadBookedSlots, 1000);
+                                // Reload booked slots from sheet (wait for Google Sheet to update)
+                                setTimeout(loadBookedSlots, 2500);
                             } else {
                                 showMessage(
                                     data.message ||
