@@ -192,8 +192,21 @@
   const saturdaySlots = generateSaturdaySlots();
   const allSlots = [...fridaySlots, ...saturdaySlots];
 
-  let bookedSlots = JSON.parse(localStorage.getItem('schooledBookedSlots')) || [];
+  let bookedSlots = [];
   let selectedSlot = null;
+
+  // Fetch booked slots from Google Sheet on page load
+  function loadBookedSlots() {
+    fetch(GOOGLE_APPS_SCRIPT_URL + '?action=getBookedSlots')
+      .then(response => response.json())
+      .then(data => {
+        if (data.bookedSlots) {
+          bookedSlots = data.bookedSlots;
+          renderSlots();
+        }
+      })
+      .catch(err => console.log('Could not load booked slots:', err));
+  }
 
   function renderSlots() {
     console.log('renderSlots called');
@@ -280,16 +293,13 @@
     .then(response => response.json())
     .then(data => {
       if (data.status === 'success') {
-        // Store booking locally
-        bookedSlots.push(selectedSlot);
-        localStorage.setItem('schooledBookedSlots', JSON.stringify(bookedSlots));
-
         showMessage(`✓ Audition confirmed! ${parentName}, confirmation sent to ${email}. See you on ${time}!`, 'success');
         document.getElementById('castingForm').reset();
         selectedSlot = null;
         document.getElementById('slotsSection').style.display = 'block';
         document.getElementById('formSection').style.display = 'none';
-        renderSlots();
+        // Reload booked slots from sheet
+        setTimeout(loadBookedSlots, 1000);
       } else {
         showMessage(data.message || 'Error booking audition. Please try again.', 'error');
       }
@@ -307,7 +317,8 @@
     msg.scrollIntoView({ behavior: 'smooth' });
   }
 
-  renderSlots();
+  // Load booked slots from Google Sheet on page load
+  loadBookedSlots();
 </script>
 
 
