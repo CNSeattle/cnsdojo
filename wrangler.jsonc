@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json.schemastore.org/wrangler.json",
+  "name": "cnsdojo",
+  "type": "javascript",
+  "main": "src/index.js",
+  "compatibility_date": "2026-04-23",
+  "observability": {
+    "enabled": true
+  },
+  "env": {
+    "production": {
+      "routes": [
+        {
+          "pattern": "cnsdojo.com/*",
+          "zone_name": "cnsdojo.com"
+        }
+      ]
+    }
+  },
+  "build": {
+    "command": "echo 'Static site - no build needed'",
+    "watch_paths": ["**/*.html", "**/*.css", "images/**/*"]
+  },
+  "assets": {
+    "directory": ".",
+    "include": ["*.html", "*.css", "style.css", "images/**/*"],
+    "exclude": ["node_modules", ".git", "*.js", "*.pdf", "*.csv", ".*"]
+  }
+}
