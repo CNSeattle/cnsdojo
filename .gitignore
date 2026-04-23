@@ -12,3 +12,15 @@ Thumbs.db
 # Environment variables
 .env
 .env.local
+
+# Google service account credentials
+google-credentials.json
+
+# Node
+node_modules/
+package-lock.json
+
+# Generated files
+PRIMARY_Contacts.csv
+assets/brevo-urls.json
+assets/compressed/brevo-urls.json
