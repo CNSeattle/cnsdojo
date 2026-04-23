@@ -134,10 +134,8 @@
 </div>
 
 <script>
-  // EmailJS Setup - will be initialized when library loads
-  const EMAILJS_PUBLIC_KEY = 'PiffeTcfIyUhjyYRA';
-  const EMAILJS_SERVICE_ID = 'service_xwwm8io';
-  const EMAILJS_TEMPLATE_ID = 'template_y1ciilr';
+  // Google Apps Script endpoint for handling form submissions
+  const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxrxdigoB35VhqUYyaPNfW7l5AOVn93c53jCP2RPSnhWAN1b74RSsls5D_OLELwsyD8FQ/exec';
 
   function generateFridaySlots() {
     const slots = [];
@@ -268,28 +266,38 @@
 
     const time = formatTimeFull(selectedSlot);
 
-    // Store booking locally
-    bookedSlots.push(selectedSlot);
-    localStorage.setItem('schooledBookedSlots', JSON.stringify(bookedSlots));
-
-    // If EmailJS is available, send email
-    if (typeof emailjs !== 'undefined') {
-      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-        parent_name: parentName,
-        child_name: childName,
+    // Submit to Google Apps Script
+    fetch(GOOGLE_APPS_SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        parentName: parentName,
+        childName: childName,
         email: email,
-        audition_time: time
-      }).catch(err => console.error('Email send failed:', err));
-      showMessage(`✓ Audition confirmed! ${parentName}, confirmation sent to ${email}. See you on ${time}!`, 'success');
-    } else {
-      showMessage(`✓ Audition confirmed! ${parentName}, your audition is booked for ${time}. Please check your email for details.`, 'success');
-    }
+        audition_time: time,
+        selectedSlot: selectedSlot
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.status === 'success') {
+        // Store booking locally
+        bookedSlots.push(selectedSlot);
+        localStorage.setItem('schooledBookedSlots', JSON.stringify(bookedSlots));
 
-    document.getElementById('castingForm').reset();
-    selectedSlot = null;
-    document.getElementById('slotsSection').style.display = 'block';
-    document.getElementById('formSection').style.display = 'none';
-    renderSlots();
+        showMessage(`✓ Audition confirmed! ${parentName}, confirmation sent to ${email}. See you on ${time}!`, 'success');
+        document.getElementById('castingForm').reset();
+        selectedSlot = null;
+        document.getElementById('slotsSection').style.display = 'block';
+        document.getElementById('formSection').style.display = 'none';
+        renderSlots();
+      } else {
+        showMessage(data.message || 'Error booking audition. Please try again.', 'error');
+      }
+    })
+    .catch(err => {
+      showMessage('Error submitting form. Please try again.', 'error');
+      console.error('Form submission error:', err);
+    });
   });
 
   function showMessage(text, type) {
@@ -302,20 +310,6 @@
   renderSlots();
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js" async></script>
-<script>
-  // Initialize EmailJS when library loads
-  document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-      if (typeof emailjs !== 'undefined') {
-        emailjs.init(EMAILJS_PUBLIC_KEY);
-        console.log('EmailJS initialized');
-      } else {
-        console.warn('EmailJS library failed to load');
-      }
-    }, 100);
-  });
-</script>
 
 </body>
 </html>
