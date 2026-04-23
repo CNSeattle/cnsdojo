@@ -133,24 +133,11 @@
   </div>
 </div>
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/index.min.js"></script>
-
 <script>
-  // EmailJS Setup
+  // EmailJS Setup - will be initialized when library loads
   const EMAILJS_PUBLIC_KEY = 'PiffeTcfIyUhjyYRA';
   const EMAILJS_SERVICE_ID = 'service_xwwm8io';
   const EMAILJS_TEMPLATE_ID = 'template_y1ciilr';
-
-  try {
-    if (typeof emailjs !== 'undefined') {
-      emailjs.init(EMAILJS_PUBLIC_KEY);
-      console.log('EmailJS initialized');
-    } else {
-      console.warn('EmailJS library not loaded');
-    }
-  } catch (e) {
-    console.error('EmailJS init error:', e);
-  }
 
   function generateFridaySlots() {
     const slots = [];
@@ -310,6 +297,21 @@
   }
 
   renderSlots();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/index.min.js" async></script>
+<script>
+  // Initialize EmailJS when library loads
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      if (typeof emailjs !== 'undefined') {
+        emailjs.init(EMAILJS_PUBLIC_KEY);
+        console.log('EmailJS initialized');
+      } else {
+        console.warn('EmailJS library failed to load');
+      }
+    }, 100);
+  });
 </script>
 
 </body>
