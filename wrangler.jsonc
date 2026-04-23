@@ -1,0 +1,12 @@
+{
+  "name": "cnsdojo",
+  "type": "javascript",
+  "main": "src/index.js",
+  "compatibility_date": "2026-04-23",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "public"
+  }
+}

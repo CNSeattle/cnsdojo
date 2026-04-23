@@ -19,21 +19,20 @@ google-credentials.json
 # Node
 node_modules/
 package-lock.json
+package.json
 
-# Generated files
-PRIMARY_Contacts.csv
-assets/brevo-urls.json
-assets/compressed/brevo-urls.json
-
-# Build & deployment
-*.pdf
-*.csv
+# Utility scripts & data (not for deployment)
+_scripts/
 CNS_Emailer/
 Extras/
 add-pdf-link.js
 brevo-*.js
-_scripts/
-wrangler.jsonc
-.wranglerignore
+PRIMARY_Contacts.csv
+SCHOOLED_Sign-Up_Flyer.pdf
+assets/brevo-urls.json
+assets/compressed/brevo-urls.json
+
+# Build & Cloudflare
 .wrangler/
+.wranglerignore
 dist/
